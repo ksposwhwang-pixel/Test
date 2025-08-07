@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSW의 웹 페이지</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f7f9fc;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s; /* 다크모드 전환 효과 */
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 20px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        section {
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: background-color 0.3s; /* 다크모드 효과 */
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-size: 1.8em;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .control-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1em;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .control-button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            transition: background-color 0.3s, color 0.3s; /* 다크모드 효과 */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* 다크모드 스타일 */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+
+        header.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        section.dark-mode {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+        }
+
+        a.dark-mode {
+            color: #6bcf6b;
+        }
+
+        footer.dark-mode {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+        }
+
+        /* 방명록 스타일 */
+        .guestbook-section {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .guestbook-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guestbook-form input,
+        .guestbook-form textarea {
+            width: 80%;
+            max-width: 500px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .guestbook-form button {
+            width: 150px;
+            padding: 10px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .guestbook-list {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .guestbook-entry {
+            margin-bottom: 20px;
+            background-color: #f7f9fc;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .guestbook-entry h4 {
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+        }
+
+        /* 다크모드: 방명록 항목 */
+        .guestbook-entry.dark-mode {
+            background-color: #1e1e1e;
+            border-color: #444;
+            color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <h1 id="title">안녕하세요! 저는 HSW입니다.</h1>
+    </header>
+    <main>
+        <div class="profile-image">
+            <img src="profile.jpg" alt="HSW의 프로필 사진">
+        </div>
+        <section id="section">
+            <h2 id="intro-title">소개</h2>
+            <p><strong>이름:</strong> <span id="name">HSW</span></p>
+            <p><strong>취미:</strong> <span id="hobby">숨쉬기</span></p>
+            <p><strong>이메일:</strong> <a href="mailto:hsw98@kspo.or.kr" id="email">hsw98@kspo.or.kr</a></p>
+            <div class="button-container">
+                <button class="control-button" onclick="sayHello()">인사하기</button>
+                <button class="control-button" id="lang-button" onclick="toggleLanguage()">English</button>
+                <button class="control-button" id="mode-button" onclick="toggleDarkMode()">다크모드로 전환</button>
+            </div>
+        </section>
+
+        <!-- 방명록 섹션 -->
+        <section id="guestbook-section">
+            <h2>방명록</h2>
+            <div class="guestbook-section">
+                <form class="guestbook-form" onsubmit="addGuestbookEntry(event)">
+                    <input type="text" id="guest-name" placeholder="이름" required>
+                    <textarea id="guest-message" placeholder="메시지를 입력하세요" rows="5" required></textarea>
+                    <button type="submit">등록</button>
+                </form>
+                <div class="guestbook-list" id="guestbook-list">
+                    <h3>방문자 방명록</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <p id="footer-text">&copy; 2025 HSW. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let isEnglish = false;
+        let isDarkMode = false;
+
+        function sayHello() {
+            alert(isEnglish ? 'Hello!' : '안녕하세요!');
+        }
+
+        function toggleLanguage() {
+            const title = document.getElementById('title');
+            const introTitle = document.getElementById('intro-title');
+            const footerText = document.getElementById('footer-text');
+
+            if (!isEnglish) {
+                title.textContent = 'Hello! I am HSW.';
+                introTitle.textContent = 'Introduction';
+                footerText.textContent = '© 2025 HSW. All rights reserved.';
+                document.getElementById('lang-button').textContent = '한글';
+                isEnglish = true;
+            } else {
+                title.textContent = '안녕하세요! 저는 HSW입니다.';
+                introTitle.textContent = '소개';
+                footerText.textContent = '© 2025 HSW. All rights reserved.';
+                document.getElementById('lang-button').textContent = 'English';
+                isEnglish = false;
+            }
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            const header = document.getElementById('header');
+            const section = document.getElementById('section');
+            const footer = document.getElementById('footer');
+            const guestbookSection = document.getElementById('guestbook-section');
+            const guestbookEntries = document.querySelectorAll('.guestbook-entry');
+
+            if (!isDarkMode) {
+                body.classList.add('dark-mode');
+                header.classList.add('dark-mode');
+                section.classList.add('dark-mode');
+                footer.classList.add('dark-mode');
+                guestbookSection.classList.add('dark-mode');
+                guestbookEntries.forEach(entry => entry.classList.add('dark-mode'));
+                document.getElementById('mode-button').textContent = '라이트모드로 전환';
+                isDarkMode = true;
+            } else {
+                body.classList.remove('dark-mode');
+                header.classList.remove('dark-mode');
+                section.classList.remove('dark-mode');
+                footer.classList.remove('dark-mode');
+                guestbookSection.classList.remove('dark-mode');
+                guestbookEntries.forEach(entry => entry.classList.remove('dark-mode'));
+                document.getElementById('mode-button').textContent = '다크모드로 전환';
+                isDarkMode = false;
+            }
+        }
+
+        function addGuestbookEntry(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('guest-name').value;
+            const message = document.getElementById('guest-message').value;
+
+            const list = document.getElementById('guestbook-list');
+            const entry = document.createElement('div');
+            entry.className = 'guestbook-entry';
+
+            const nameElement = document.createElement('h4');
+            nameElement.textContent = name;
+
+            const messageElement = document.createElement('p');
+            messageElement.textContent = message;
+
+            entry.appendChild(nameElement);
+            entry.appendChild(messageElement);
+
+            // 다크모드 활성화 시 새 항목에도 다크모드 클래스 추가
+            if (isDarkMode) {
+                entry.classList.add('dark-mode');
+            }
+
+            list.appendChild(entry);
+
+            document.getElementById('guest-name').value = '';
+            document.getElementById('guest-message').value = '';
+        }
+    </script>
+</body>
+</html>
